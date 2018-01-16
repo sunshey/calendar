@@ -1,1 +1,1 @@
-include ':app', ':DatePicker',':securityhttp',':rxbus',':utils'
+include ':app', ':DatePicker',':securityhttp',':rxbus',':utils',':share'

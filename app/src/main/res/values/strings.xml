@@ -22,4 +22,6 @@
     <string name="forecast_next">预测下期</string>
     <string name="current_date">%1$s年%2$s月</string>
     <string name="current_date_day">%1$s年%2$s月%3$s日</string>
+    <string name="sort_week">第%1$s周</string>
+    <string name="tiangan_zodiac">%1$s [%2$s]</string>
 </resources>

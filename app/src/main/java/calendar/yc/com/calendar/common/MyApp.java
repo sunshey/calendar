@@ -2,6 +2,9 @@ package calendar.yc.com.calendar.common;
 
 import android.app.Application;
 
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.game.UMGameAgent;
+import com.umeng.commonsdk.UMConfigure;
 import com.vondear.rxtools.RxUtils;
 
 import calendar.yc.com.calendar.util.DbManager;
@@ -17,7 +20,8 @@ public class MyApp extends Application {
         super.onCreate();
         RxUtils.init(this);
         DbManager.initManager(getApplicationContext());
-
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.setLogEnabled(true);
 
     }
 }

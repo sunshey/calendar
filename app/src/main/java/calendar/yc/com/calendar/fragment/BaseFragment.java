@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.EmptyUtils;
 import com.hwangjr.rxbus.RxBus;
+import com.umeng.analytics.MobclickAgent;
 import com.vondear.rxtools.RxLogUtils;
 
 import butterknife.ButterKnife;
@@ -38,6 +40,20 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutId();
 
     protected abstract void init();
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(this.getClass().getSimpleName());
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(this.getClass().getSimpleName());
+    }
 
     @Override
     public void onDestroy() {

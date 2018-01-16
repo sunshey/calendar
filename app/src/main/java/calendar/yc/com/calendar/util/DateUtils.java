@@ -20,6 +20,21 @@ public class DateUtils {
             "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十",
             "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"};
 
+
+    private static String[] astro = new String[]{"摩羯座", "水瓶座", "双鱼座", "白羊座", "金牛座",
+            "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座"};
+
+    private static String[] years = new String[]{
+            "属鼠", "属牛", "属虎", "属兔",
+            "属龙", "属蛇", "属马", "属羊",
+            "属猴", "属鸡", "属狗", "属猪"
+    };
+
+    private static String[] Gan = {"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛",
+            "壬", "癸"};
+    private static String[] Zhi = {"子", "丑", "寅", "卯", "辰", "巳", "午", "未",
+            "申", "酉", "戌", "亥"};
+
     /**
      * 获得当天time点时间戳
      */
@@ -138,6 +153,7 @@ public class DateUtils {
 
     /**
      * 获取当前阴历
+     *
      * @param year
      * @param month
      * @param day
@@ -147,6 +163,53 @@ public class DateUtils {
         int[] lunarDate = LunarCalendar.solarToLunar(year, month, day);
 
         return lunarMonth[lunarDate[1] - 1] + lunarDay[lunarDate[2] - 1];
+    }
+
+
+    /**
+     * 获取星座
+     *
+     * @param month
+     * @param day
+     * @return
+     */
+    public static String getAstro(int month, int day) {
+
+        int[] arr = new int[]{20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22};// 两个星座分割日
+        int index = month;
+        // 所查询日期在分割日之前，索引-1，否则不变
+        if (day < arr[month - 1]) {
+            index = index - 1;
+        }
+
+        // 返回索引指向的星座string
+        return astro[index];
+    }
+
+    /**
+     * 根据年份获取属相
+     *
+     * @param year
+     * @return
+     */
+    public static String getYear(Integer year) {
+        if (year < 1900) {
+            return "未知";
+        }
+        Integer start = 1900;
+
+        return years[(year - start) % years.length];
+    }
+
+    /**
+     * 获取天干地支
+     *
+     * @param num
+     * @return
+     */
+    //============================== 传入 offset 传回干支, 0=甲子
+    public static String cyclical(int num) {
+        return (Gan[num % 10] + Zhi[num % 12]);
     }
 
 }

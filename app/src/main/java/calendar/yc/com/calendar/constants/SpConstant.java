@@ -7,4 +7,6 @@ package calendar.yc.com.calendar.constants;
 public class SpConstant {
 
     public static final String CURRENT_DATE = "current_date";
+
+    public static final String CURRENT_MONTH = "current_month";
 }

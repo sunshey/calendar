@@ -76,7 +76,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -116,12 +117,14 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/tv_sort_week"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="第二周"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/tv_constellation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_5"
@@ -129,6 +132,7 @@
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/tv_tiangan_zodiac"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_15"

@@ -41,6 +41,9 @@ public class DatePicker extends LinearLayout {
 
     private OnDateSelectedListener onDateSelectedListener;// 日期多选后监听
 
+
+
+
     /**
      * 日期单选监听器
      */
@@ -286,5 +289,7 @@ public class DatePicker extends LinearLayout {
         return false;
     }
 
-
+    public MonthView getMonthView() {
+        return monthView;
+    }
 }

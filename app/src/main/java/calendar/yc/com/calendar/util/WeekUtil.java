@@ -1,5 +1,7 @@
 package calendar.yc.com.calendar.util;
 
+import android.app.Service;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,6 +45,7 @@ public class WeekUtil
 
     /**
      * 获取指定日期在本周的星期数
+     *
      * @param pTime
      * @return
      */
@@ -58,7 +61,30 @@ public class WeekUtil
             e.printStackTrace();
         }
 
+
+
         return num2Str(c.get(Calendar.DAY_OF_WEEK));
 
+    }
+
+
+    public static String digit2Ch(int num) {
+        String ch = "";
+        switch (num) {
+            case 1:
+                ch = "一";
+                break;
+            case 2:
+                ch = "二";
+                break;
+            case 3:
+                ch = "三";
+                break;
+            case 4:
+                ch = "四";
+                break;
+        }
+
+        return ch;
     }
 }

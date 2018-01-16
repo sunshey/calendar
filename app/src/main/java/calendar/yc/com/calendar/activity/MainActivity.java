@@ -35,6 +35,7 @@ import calendar.yc.com.calendar.fragment.CaipiaoForecastFragment;
 import calendar.yc.com.calendar.fragment.HuangLiFragment;
 import calendar.yc.com.calendar.fragment.IndexFragment;
 import calendar.yc.com.calendar.fragment.ShenMaFragment;
+import calendar.yc.com.calendar.util.DatePickUtils;
 import rx.functions.Action1;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
@@ -54,8 +55,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     RelativeLayout mainTop;
     @BindView(R.id.iv_today)
     ImageView ivToday;
-    @BindView(R.id.iv_down_arrow)
-    ImageView ivDownArrow;
+    @BindView(R.id.ll_down_arrow)
+    LinearLayout ivDownArrow;
 
     private List<Fragment> mList; //ViewPager的数据源
     private String currentYear;
@@ -103,10 +104,29 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             @Override
             public void call(Void aVoid) {
                 setCurrentDate(currentYear, currentMonth);
-
                 RxBus.get().post(BusAction.SHOW_TODAY_DATE, "show today");
             }
         });
+        RxView.clicks(mainShare).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+
+            }
+        });
+        RxView.clicks(ivDownArrow).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                DatePickUtils.showDatePicker(MainActivity.this, new DatePickUtils.onDatePickListener() {
+                    @Override
+                    public void onDatePick(String year, String month, String day) {
+                        setCurrentDate(year, month);
+                        RxBus.get().post(BusAction.SHOW_SELECTED_DATE, year + "-" + month + "-" + day);
+                    }
+                });
+            }
+        });
+
+
     }
 
     @Override
@@ -131,21 +151,22 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onPageSelected(int position) {
-        RxLogUtils.e("TAG", "POSTIONT: " + position);
         currentPos = position;
         mainBottomBar.selectTab(position);
         if (position == 0) {
             ivDownArrow.setVisibility(View.VISIBLE);
             String str = RxSPUtils.getString(this, SpConstant.CURRENT_DATE);
-            if (!TextUtils.isEmpty(str))
+            if (!TextUtils.isEmpty(str)) {
                 tvMainDate.setText(str);
-            ivToday.setVisibility(View.VISIBLE);
+            }
+
+//            ivToday.setVisibility(View.VISIBLE);
         } else {
             ivDownArrow.setVisibility(View.GONE);
         }
         if (position == 1) {
             tvMainDate.setText(getString(R.string.main_huangli));
-            ivToday.setVisibility(View.VISIBLE);
+//            ivToday.setVisibility(View.VISIBLE);
         } else if (position == 2) {
             tvMainDate.setText(getString(R.string.main_caipiao));
             ivToday.setVisibility(View.GONE);
@@ -168,7 +189,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             }
     )
     public void getCurrentDate(String date) {
-        RxLogUtils.e("TAG", "getCurrentDate:" + date);
         String[] clickDate = date.split("-");
         setCurrentDate(clickDate[0], clickDate[1]);
 
@@ -188,9 +208,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             }
     )
     public void getCurrentYearMonth(String date) {
-        RxLogUtils.e("TAG", "getCurrentDate:" + date);
         String[] clickDate = date.split("-");
         setCurrentDate(clickDate[0], clickDate[1]);
+        RxSPUtils.putString(this, SpConstant.CURRENT_MONTH, clickDate[1]);
 
     }
 
@@ -201,7 +221,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             }
     )
     public void getLastOrNextDate(String date) {
-        RxLogUtils.e("TAG", "POS: " + currentPos);
+
         if (currentPos == 0) {
             String[] clickDate = date.split("-");
             setCurrentDate(clickDate[0], clickDate[1]);

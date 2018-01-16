@@ -1,12 +1,10 @@
 package calendar.yc.com.calendar.fragment;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
@@ -24,18 +22,17 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import calendar.yc.com.calendar.R;
 import calendar.yc.com.calendar.adapter.HuangLiAdapter;
 import calendar.yc.com.calendar.bean.CalendarNewsInfo;
 import calendar.yc.com.calendar.bean.HuangLiDbInfo;
 import calendar.yc.com.calendar.constants.BusAction;
+import calendar.yc.com.calendar.util.DatePickUtils;
 import calendar.yc.com.calendar.util.DateUtils;
 import calendar.yc.com.calendar.util.DbManager;
 import calendar.yc.com.calendar.util.LunCalendarUtils;
+import calendar.yc.com.calendar.util.WeekUtil;
 import rx.functions.Action1;
-import rx.internal.util.unsafe.MpmcArrayQueue;
 
 /**
  * Created by wanglin  on 2018/1/11 15:41.
@@ -58,16 +55,24 @@ public class HuangLiFragment extends BaseFragment {
     ImageView ivThree;
     @BindView(R.id.iv_four)
     ImageView ivFour;
-    @BindView(R.id.iv_last)
-    ImageView ivLast;
-    @BindView(R.id.iv_next)
-    ImageView ivNext;
-
-
-    private List<CalendarNewsInfo> list;
+    @BindView(R.id.ll_last)
+    LinearLayout llLast;
+    @BindView(R.id.ll_next)
+    LinearLayout llNext;
+    @BindView(R.id.tv_tiangan_zodiac)
+    TextView tvTianganZodiac;
+    @BindView(R.id.tv_weekday)
+    TextView tvWeekday;
+    @BindView(R.id.tv_sort_week)
+    TextView tvSortWeek;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.rl_select_date)
+    RelativeLayout rlSelectDate;
+
+
+    private List<CalendarNewsInfo> list;
     private HuangLiAdapter huangLiAdapter;
     private String currentMonth;
     private String currentYear;
@@ -92,48 +97,57 @@ public class HuangLiFragment extends BaseFragment {
     }
 
     private void initListener() {
-        RxView.clicks(ivNext).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+        RxView.clicks(llNext).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
                 String currentDate = getAfterDay(Integer.parseInt(currentYear), Integer.parseInt(currentMonth), Integer.parseInt(currentDay));
                 String[] str = currentDate.split("-");
-                currentYear = str[0];
-                currentMonth = str[1];
-                currentDay = str[2];
-                setLunCalendar();
-                setYiJiInfo(currentDate);
-                if (currentMonth.startsWith("0")) {
-                    currentMonth = currentMonth.replace("0", "");
-                }
-                if (currentDay.startsWith("0")) {
-                    currentDay = currentDay.replace("0", "");
-                }
+                setSelectedDate(str[0],str[1],str[2]);
 
-                tvHuangliDate.setText(String.format(getString(R.string.current_date_day), currentYear, currentMonth, currentDay));
 
                 RxBus.get().post(BusAction.SHOW_LAST_NEXT_DATE, currentDate);
             }
         });
-        RxView.clicks(ivLast).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+        RxView.clicks(llLast).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
                 String currentDate = getBeforeDay(Integer.parseInt(currentYear), Integer.parseInt(currentMonth), Integer.parseInt(currentDay));
+
                 String[] str = currentDate.split("-");
-                currentYear = str[0];
-                currentMonth = str[1];
-                currentDay = str[2];
-                setLunCalendar();
-                setYiJiInfo(currentDate);
-                if (currentMonth.startsWith("0")) {
-                    currentMonth = currentMonth.replace("0", "");
-                }
-                if (currentDay.startsWith("0")) {
-                    currentDay = currentDay.replace("0", "");
-                }
-                tvHuangliDate.setText(String.format(getString(R.string.current_date_day), currentYear, currentMonth, currentDay));
+                setSelectedDate(str[0],str[1],str[2]);
+
                 RxBus.get().post(BusAction.SHOW_LAST_NEXT_DATE, currentDate);
             }
         });
+
+        RxView.clicks(rlSelectDate).throttleFirst(200, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                DatePickUtils.showDatePicker(getActivity(), new DatePickUtils.onDatePickListener() {
+                    @Override
+                    public void onDatePick(String year, String month, String day) {
+                        setSelectedDate(year, month, day);
+
+                        RxBus.get().post(BusAction.SHOW_SELECTED_DATE, year + "-" + month + "-" + day);
+                    }
+                });
+            }
+        });
+    }
+
+    private void setSelectedDate(String year, String month, String day) {
+        currentYear = year;
+        currentMonth = month;
+        currentDay = day;
+        if (currentMonth.startsWith("0")) {
+            currentMonth = currentMonth.replace("0", "");
+        }
+        if (currentDay.startsWith("0")) {
+            currentDay = currentDay.replace("0", "");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(currentYear).append("-").append(currentMonth).append("-").append(currentDay);
+        setCommonDate(sb.toString());
     }
 
     private void initData() {
@@ -141,9 +155,9 @@ public class HuangLiFragment extends BaseFragment {
             list.add(new CalendarNewsInfo(R.mipmap.huangli_item_sample, "既招财，又旺妻的三大生肖男，你的他是吗？", 1965));
         }
         huangLiAdapter.notifyDataSetChanged();
-        setLunCalendar();
-        tvHuangliDate.setText(String.format(getString(R.string.current_date_day), currentYear, currentMonth, currentDay));
-        setYiJiInfo(currentYear + "-" + currentMonth + "-" + currentDay);
+        StringBuilder sb = new StringBuilder();
+        sb.append(currentYear).append("-").append(currentMonth).append("-").append(currentDay);
+        setCommonDate(sb.toString());
     }
 
     @Subscribe(
@@ -153,13 +167,17 @@ public class HuangLiFragment extends BaseFragment {
             }
     )
     public void getCurrentDate(String date) {
-        String[] clickDate = date.split("-");
-        tvHuangliDate.setText(String.format(getString(R.string.current_date_day), clickDate[0], clickDate[1], clickDate[2]));
-        setYiJiInfo(date);
-        currentYear = clickDate[0];
-        currentMonth = clickDate[1];
-        currentDay = clickDate[2];
-        setLunCalendar();
+        setCommonDate(date);
+    }
+
+    @Subscribe(
+            thread = EventThread.MAIN_THREAD,
+            tags = {
+                    @Tag(BusAction.SHOW_SELECTED_DATE)
+            }
+    )
+    public void getSelectDate(String date) {
+        setCommonDate(date);
     }
 
     private void setYiJiInfo(String date) {
@@ -194,7 +212,6 @@ public class HuangLiFragment extends BaseFragment {
         //cl.roll(Calendar.DATE, -1);
         //使用set方法直接进行设置
 
-
         Calendar cl = Calendar.getInstance();
         cl.set(year, month - 1, day - 1);
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -219,5 +236,22 @@ public class HuangLiFragment extends BaseFragment {
         RxLogUtils.e("TAG", sf.format(cl.getTime()));
         return sf.format(cl.getTime());
     }
+
+
+    private void setCommonDate(String currentDate) {
+        String[] clickDate = currentDate.split("-");
+        currentYear = clickDate[0];
+        currentMonth = clickDate[1];
+        currentDay = clickDate[2];
+        tvHuangliDate.setText(String.format(getString(R.string.current_date_day), currentYear, currentMonth, currentDay));
+        setLunCalendar();
+        setYiJiInfo(currentDate);
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(currentYear), Integer.parseInt(currentMonth) - 1, Integer.parseInt(currentDay));
+        tvSortWeek.setText(String.format(getString(R.string.sort_week), String.valueOf(c.get(Calendar.WEEK_OF_MONTH))));
+        tvWeekday.setText(WeekUtil.assignDate2Week(currentDate));
+        tvTianganZodiac.setText(String.format(getString(R.string.tiangan_zodiac), DateUtils.cyclical(Integer.parseInt(currentDay)), DateUtils.getYear(Integer.parseInt(currentYear))));
+    }
+
 
 }

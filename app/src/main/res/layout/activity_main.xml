@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/main_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="@dimen/dp_40"
         android:background="@color/red_d03f3f">
 
         <LinearLayout
@@ -24,15 +24,23 @@
                 android:layout_alignTop="@+id/ll_main_date"
                 android:layout_toStartOf="@+id/ll_main_date"
                 android:textColor="@color/white"
+                android:textSize="@dimen/text_16"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_down_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:src="@mipmap/nav_more_arrow_icon" />
+            <LinearLayout
+                android:id="@+id/ll_down_arrow"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:gravity="center">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/nav_more_arrow_icon" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <ImageView
@@ -42,7 +50,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_50"
             android:layout_toRightOf="@id/ll_main_date"
-            android:src="@mipmap/ic_today_button" />
+            android:src="@mipmap/ic_today_button"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/main_share"

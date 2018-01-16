@@ -1,6 +1,10 @@
 package calendar.yc.com.calendar.fragment;
 
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
@@ -8,13 +12,18 @@ import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 import com.vondear.rxtools.RxLogUtils;
+import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.RxUtils;
 
 import java.util.Calendar;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import calendar.yc.com.calendar.R;
 import calendar.yc.com.calendar.bean.HuangLiDbInfo;
 import calendar.yc.com.calendar.constants.BusAction;
+import calendar.yc.com.calendar.constants.SpConstant;
 import calendar.yc.com.calendar.util.DateUtils;
 import calendar.yc.com.calendar.util.DbManager;
 import calendar.yc.com.calendar.util.WeekUtil;
@@ -39,6 +48,13 @@ public class IndexFragment extends BaseFragment {
     TextView tvYi;
     @BindView(R.id.tv_ji)
     TextView tvJi;
+    @BindView(R.id.tv_sort_week)
+    TextView tvSortWeek;
+    @BindView(R.id.tv_constellation)
+    TextView tvConstellation;
+    @BindView(R.id.tv_tiangan_zodiac)
+    TextView tvTianganZodiac;
+
 
     private int currentMoth;
     private int currentYear;
@@ -103,7 +119,6 @@ public class IndexFragment extends BaseFragment {
 
     private void setDate(String currentDate) {
 
-
         String[] split = currentDate.split("-");
 
         tvToday.setText(split[2]);
@@ -114,6 +129,24 @@ public class IndexFragment extends BaseFragment {
         if (yiJiInfo != null) {
             tvYi.setText(yiJiInfo.getYi());
             tvJi.setText(yiJiInfo.getJi());
+        }
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(split[0]), Integer.parseInt(split[1]) - 1, Integer.parseInt(split[2]));
+
+        tvSortWeek.setText(String.format(getString(R.string.sort_week), String.valueOf(c.get(Calendar.WEEK_OF_MONTH))));
+        tvConstellation.setText(DateUtils.getAstro(Integer.parseInt(split[1]), Integer.parseInt(split[2])));
+        tvTianganZodiac.setText(String.format(getString(R.string.tiangan_zodiac), DateUtils.cyclical(Integer.parseInt(split[2])), DateUtils.getYear(Integer.parseInt(split[0]))));
+
+
+    }
+
+    private void scrollMonthView(int month) {
+
+        String saveDate = RxSPUtils.getString(getActivity(), SpConstant.CURRENT_MONTH);
+        if (!TextUtils.isEmpty(saveDate)) {
+            RxLogUtils.e("TAG", "setDate:" + saveDate + "--" + month + "---" + (month - Integer.parseInt(saveDate)));
+            datePicker.getMonthView().showNectMonth(month - Integer.parseInt(saveDate));
+
         }
     }
 
@@ -138,7 +171,23 @@ public class IndexFragment extends BaseFragment {
     )
     public void getLastOrNextDate(String date) {
         setDate(date);
+
+    }
+
+
+    @Subscribe(
+            thread = EventThread.MAIN_THREAD,
+            tags = {
+                    @Tag(BusAction.SHOW_SELECTED_DATE)
+            }
+    )
+    public void getSelectedDate(String date) {
+        setDate(date);
+//        scrollMonthView(date);
+        String[] split = date.split("-");
+        scrollMonthView(Integer.parseInt(split[1]));
 //        datePicker.setDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH) + 1);
     }
+
 
 }

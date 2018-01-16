@@ -818,4 +818,40 @@ public class MonthView extends View {
         }
 
     }
+
+
+    public void showNectMonth(int distance) {
+        mSlideMode = SlideMode.HOR;
+        int totalMoveX = distance + lastMoveX;
+        smoothScrollTo(totalMoveX, indexYear * height);
+        indexMonth++;
+        centerMonth = (centerMonth + 1) % 13;
+        if (centerMonth == 0) {
+            centerMonth = 1;
+            centerYear++;
+        }
+
+        buildRegion();
+        computeDate();
+        smoothScrollTo(width * indexMonth, indexYear * height);
+        lastMoveX = width * indexMonth;
+    }
+
+    public void showPreviousMonth(int distance) {
+        mSlideMode = SlideMode.HOR;
+        int totalMoveX = distance + lastMoveX;
+        smoothScrollTo(totalMoveX, indexYear * height);
+
+        indexMonth--;
+        centerMonth = (centerMonth - 1) % 12;
+        if (centerMonth == 0) {
+            centerMonth = 12;
+            centerYear--;
+        }
+
+        buildRegion();
+        computeDate();
+        smoothScrollTo(width * indexMonth, indexYear * height);
+        lastMoveX = width * indexMonth;
+    }
 }
