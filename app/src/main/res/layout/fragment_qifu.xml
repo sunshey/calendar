@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/qfmd_main_top_bg"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_5">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/qifu_mingdeng_back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/qf_deng_ge" />
+    </RelativeLayout>
+
+
+    <RadioGroup
+        android:id="@+id/lampButtonGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@mipmap/qfmd_btn_bg"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <RadioButton
+            android:id="@+id/lampBuy"
+            android:layout_width="0dp"
+            android:layout_height="45.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/qfmd_main_btn_selector1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:paddingLeft="15.0dip"
+            android:text="@string/app_qingdengge"
+            android:textColor="@drawable/qfmd_main_text_color"
+            android:textSize="19.0sp" />
+
+        <RadioButton
+            android:id="@+id/lampCenter"
+            android:layout_width="0dp"
+            android:layout_height="45.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/qfmd_main_btn_selector2"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="35.0dip"
+            android:text="@string/app_qiandenglou"
+            android:textColor="@drawable/qfmd_main_text_color"
+            android:textSize="19.0sp" />
+    </RadioGroup>
+
+</android.support.constraint.ConstraintLayout>

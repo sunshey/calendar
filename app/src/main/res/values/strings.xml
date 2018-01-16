@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">万年历运势</string>
+    <string name="main_index">万年历</string>
+    <string name="main_huangli">黄历</string>
+    <string name="main_caipiao">彩票</string>
+    <string name="main_qifu">祈福点香</string>
+    <string name="main_shenma">神马预测</string>
+    <string name="every_day_text">每日一言</string>
+    <string name="huangli_infomation">黄历资讯</string>
+    <string name="change_change">换一批</string>
+
+    <string name="preview_count">%1$s人浏览</string>
+    <string name="more_news">更多黄历资讯</string>
+    <string name="app_qingdengge">请灯阁</string>
+    <string name="app_qiandenglou">我的明燈</string>
+    <string name="look_more">查看更多</string>
+    <string name="look">查看</string>
+    <string name="kaijiang">开奖：</string>
+    <string name="shiji">试机号：</string>
+    <string name="periods">第%1$s期</string>
+    <string name="total_money">累计奖金池为：</string>
+    <string name="forecast_next">预测下期</string>
+    <string name="current_date">%1$s年%2$s月</string>
+    <string name="current_date_day">%1$s年%2$s月%3$s日</string>
+</resources>
