@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    compile files('libs/wftsdk5.0.jar')
+    compile files('libs/XJPay.jar')
+
+    compile files('libs/ipaynow_base_v2.0.1.jar')
+    compile files('libs/ipaynow_wechatpg_v1.0.4.jar')
+    compile files('libs/ipaynow_wechatwp_v2.0.0.jar')
+    compile files('libs/libsMPPay-XxBeiSDK-1.2.2-release.jar')
+    compile files('libs/libsWXPay-XxBeiSDK-1.0.0-release.jar')
+    compile 'com.afollestad.material-dialogs:core:0.9.0.2@aar'
+    compile project(':securityhttp')
+    compile 'com.kk:loading:1.0.2'
+    compile 'com.github.vondear:RxTools:v1.7.3.4'
+}
