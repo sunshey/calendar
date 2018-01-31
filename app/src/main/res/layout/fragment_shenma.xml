@@ -5,7 +5,8 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
@@ -14,11 +15,12 @@
 
 
         <android.support.v7.widget.RecyclerView
-
             android:id="@+id/shenma_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_marginBottom="45dp"
-            android:layout_marginTop="@dimen/dp_5" />
+            android:layout_weight="1" />
+
     </android.support.design.widget.AppBarLayout>
 </android.support.constraint.ConstraintLayout>

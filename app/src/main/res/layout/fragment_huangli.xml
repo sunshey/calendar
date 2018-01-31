@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
+    <yc.com.calendar.widget.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -147,7 +147,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_05"
-                    android:background="@color/gray_999999" />
+                    android:background="@color/gray_cccccc" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -228,9 +228,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/huangli_infomation" />
+                        android:text="@string/huangli_infomation"
+                        android:textSize="@dimen/text_16" />
 
                     <LinearLayout
+                        android:id="@+id/ll_change_another"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -238,12 +240,14 @@
                         android:gravity="center">
 
                         <ImageView
+                            android:id="@+id/iv_refresh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/card_refreah_icon"
                             android:tint="@color/gray_999999" />
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_5"
@@ -254,17 +258,21 @@
                 </RelativeLayout>
 
                 <FrameLayout
+                    android:id="@+id/fl_huangli_news"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/dp_5"
                     android:layout_marginTop="@dimen/dp_10">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/iv_cover"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
                         android:src="@mipmap/every_day_sample" />
 
                     <TextView
+                        android:id="@+id/tv_cover"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
@@ -283,6 +291,7 @@
                     android:layout_weight="1" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_more"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_5">
@@ -312,7 +321,7 @@
         </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
+    </yc.com.calendar.widget.MyScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

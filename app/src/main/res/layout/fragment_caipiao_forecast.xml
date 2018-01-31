@@ -22,9 +22,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/huangli_infomation"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16" />
 
             <TextView
+                android:id="@+id/tv_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -37,6 +39,7 @@
         </RelativeLayout>
 
         <FrameLayout
+            android:id="@+id/fl_mainView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_5"
@@ -46,7 +49,7 @@
                 android:id="@+id/iv_mainView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/every_day_sample" />
+                android:adjustViewBounds="true" />
 
             <TextView
                 android:id="@+id/tv_mainProduce"

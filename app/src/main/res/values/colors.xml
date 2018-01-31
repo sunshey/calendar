@@ -13,4 +13,11 @@
     <color name="main_text_color">#fff5daa4</color>
     <color name="main_text_color_1">#ff8e7856</color>
 
+    <color name="bg_line_color">#ded9d7</color>
+    <color name="single_buy_color">#555555</color>
+    <color name="line_color">#cccccc</color>
+    <color name="cancel_color">#707070</color>
+    <color name="gold_f8c146">#F8C146</color>
+    <color name="gray_f6f6f6">#F6F6F6</color>
+    <color name="white">#FFFFFF</color>
 </resources>

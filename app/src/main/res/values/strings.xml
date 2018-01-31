@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">万年历运势</string>
+    <string name="app_name">彩票运势</string>
     <string name="main_index">万年历</string>
     <string name="main_huangli">黄历</string>
     <string name="main_caipiao">彩票</string>
@@ -24,4 +24,26 @@
     <string name="current_date_day">%1$s年%2$s月%3$s日</string>
     <string name="sort_week">第%1$s周</string>
     <string name="tiangan_zodiac">%1$s [%2$s]</string>
+
+    <string name="charge_hint_text">支付订单</string>
+    <string name="weixin_text">微信</string>
+    <string name="weixin_circle_text">朋友圈</string>
+    <string name="qq_text">QQ好友</string>
+    <string name="qzone_text">QQ空间</string>
+    <string name="weibo_text">微博</string>
+
+    <string name="cancel_share_text">取消分享</string>
+    <string name="storge">请允许文件读写权限</string>
+    <string name="forcast_next_number">预测下期号码:</string>
+    <string name="introduce">说明</string>
+    <string name="diandeng">点灯</string>
+    <string name="from_author">来自于：%1$s</string>
+    <string name="yuan">%1$s元</string>
+    <string name="fine_no_data">暂无数据,点我重试</string>
+
+    <string name="network_error">网络错误，请重试</string>
+    <string name="pay_money">支付 （%1$s元）</string>
+    <string name="wxpay">微信支付</string>
+    <string name="alipay">支付宝支付</string>
+    <string name="look_history">查看历史</string>
 </resources>

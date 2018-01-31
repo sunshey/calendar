@@ -20,4 +20,8 @@
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
+    <dimen name="text_20">20sp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
 </resources>

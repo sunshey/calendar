@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="calendar.yc.com.calendar.activity.MainActivity">
+    tools:context="yc.com.calendar.activity.MainActivity">
 
     <RelativeLayout
         android:id="@+id/main_top"
@@ -11,37 +11,53 @@
         android:layout_height="@dimen/dp_40"
         android:background="@color/red_d03f3f">
 
-        <LinearLayout
-            android:id="@+id/ll_main_date"
+        <FrameLayout
+            android:id="@+id/fl_main_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
 
-            <TextView
-                android:id="@+id/tv_mainDate"
+            <LinearLayout
+                android:id="@+id/ll_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/ll_main_date"
-                android:layout_toStartOf="@+id/ll_main_date"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_16"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/ll_down_arrow"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center"
                 android:gravity="center">
 
-                <ImageView
-
+                <TextView
+                    android:id="@+id/tv_mainDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/nav_more_arrow_icon" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_down_arrow"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:gravity="center">
+
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/nav_more_arrow_icon" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
-
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/iv_today"
@@ -49,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_50"
-            android:layout_toRightOf="@id/ll_main_date"
+            android:layout_toRightOf="@id/fl_main_date"
             android:src="@mipmap/ic_today_button"
             android:visibility="gone" />
 
@@ -60,7 +76,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp_10"
-            android:src="@mipmap/nav_share_icon" />
+            android:src="@mipmap/nav_share_icon"
+            android:visibility="gone" />
 
 
     </RelativeLayout>
