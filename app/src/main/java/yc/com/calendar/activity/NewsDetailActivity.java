@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.TimeUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.kk.securityhttp.domain.ResultInfo;
 import com.kk.securityhttp.net.contains.HttpConfig;
@@ -17,6 +16,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import yc.com.blankj.utilcode.util.TimeUtils;
 import yc.com.calendar.R;
 import yc.com.calendar.bean.CalendarNewsInfo;
 import yc.com.calendar.callback.EmptyCallback;

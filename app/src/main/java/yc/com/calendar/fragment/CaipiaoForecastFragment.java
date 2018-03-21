@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.alibaba.fastjson.JSON;
-import com.blankj.utilcode.util.SizeUtils;
 import com.kk.securityhttp.domain.ResultInfo;
 import com.kk.securityhttp.net.contains.HttpConfig;
 
@@ -15,6 +14,7 @@ import com.kk.securityhttp.net.contains.HttpConfig;
 import java.util.List;
 
 import butterknife.BindView;
+import yc.com.blankj.utilcode.util.SizeUtils;
 import yc.com.calendar.R;
 import yc.com.calendar.adapter.CaipiaoForcastAdapter;
 import yc.com.calendar.bean.CalendarNewsGroupInfo;
@@ -22,7 +22,7 @@ import yc.com.calendar.constants.SpConstant;
 import yc.com.calendar.engine.NewsGroupEngine;
 import yc.com.calendar.util.SimpleCacheUtils;
 import rx.functions.Action1;
-import com.kk.utils.UIUitls;
+import yc.com.calendar.util.UIUitls;
 
 /**
  * Created by wanglin  on 2018/1/12 19:41.

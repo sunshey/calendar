@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
 
 /**
  * Created by wanglin  on 2017/11/22 16:14.

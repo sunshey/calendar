@@ -3,9 +3,10 @@ package com.kk.pay;
 import android.app.Activity;
 
 import com.kk.pay.other.ToastUtil;
-import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
 
 /**
  * Created by zhangkai on 2017/4/19.

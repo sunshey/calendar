@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.SizeUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hwangjr.rxbus.RxBus;
 import com.jakewharton.rxbinding.view.RxView;
@@ -27,6 +26,7 @@ import com.kk.pay.PayImplFactory;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import yc.com.blankj.utilcode.util.SizeUtils;
 import yc.com.calendar.R;
 import yc.com.calendar.adapter.GoodInfoAdapter;
 import yc.com.calendar.adapter.PaywayAdapter;

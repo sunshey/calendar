@@ -23,7 +23,6 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.jakewharton.rxbinding.view.RxView;
 import com.kk.securityhttp.domain.ResultInfo;
 import com.kk.securityhttp.net.contains.HttpConfig;
-import com.kk.utils.UIUitls;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,6 +45,7 @@ import yc.com.calendar.util.DateUtils;
 import yc.com.calendar.util.DbManager;
 import yc.com.calendar.util.LunCalendarUtils;
 import yc.com.calendar.util.SimpleCacheUtils;
+import yc.com.calendar.util.UIUitls;
 import yc.com.calendar.util.WeekUtil;
 import rx.functions.Action1;
 

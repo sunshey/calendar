@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.SizeUtils;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jakewharton.rxbinding.view.RxView;
 import com.kk.securityhttp.domain.ResultInfo;
@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import yc.com.blankj.utilcode.util.SizeUtils;
 import yc.com.calendar.R;
 import yc.com.calendar.adapter.NewsAdapter;
 import yc.com.calendar.bean.CalendarNewsInfo;

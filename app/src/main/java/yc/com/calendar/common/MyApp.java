@@ -3,13 +3,14 @@ package yc.com.calendar.common;
 import android.app.Application;
 import android.os.Build;
 
-import com.blankj.utilcode.util.Utils;
 import com.kingja.loadsir.callback.ProgressCallback;
 import com.kingja.loadsir.core.LoadSir;
+import com.kk.pay.other.Utils;
 import com.kk.securityhttp.domain.GoagalInfo;
 import com.kk.securityhttp.net.contains.HttpConfig;
 import com.tencent.bugly.Bugly;
 import com.umeng.commonsdk.UMConfigure;
+import com.vondear.rxtools.RxTool;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,28 +33,42 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        RxUtils.init(this);
-//        Observable.just("").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<String>() {
-//            @Override
-//            public void call(String s) {
-//                init();
-//            }
-//        });
-        init();
+
+        Observable.just("").subscribeOn(Schedulers.io()).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                init();
+            }
+        });
 
     }
 
     private void init() {
         Utils.init(this);
+        RxTool.init(this);
         DbManager.initManager(getApplicationContext());
         Bugly.init(getApplicationContext(), "7e2f7f339a", false);
 
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null);
         UMConfigure.setLogEnabled(true);
 
+
+        GoagalInfo.get().publicKey = "-----BEGIN PUBLIC KEY-----" +
+                "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5KaI8l7xplShIEB0Pwgm" +
+                "MRX/3uGG9BDLPN6wbMmkkO7H1mIOXWB/Jdcl4/IMEuUDvUQyv3P+erJwZ1rvNsto" +
+                "hXdhp2G7IqOzH6d3bj3Z6vBvsXP1ee1SgqUNrjX2dn02hMJ2Swt4ry3n3wEWusaW" +
+                "mev4CSteSKGHhBn5j2Z5B+CBOqPzKPp2Hh23jnIH8LSbXmW0q85a851BPwmgGEan" +
+                "5HBPq04QUjo6SQsW/7dLaaAXfUTYETe0HnpLaimcHl741ftGyrQvpkmqF93WiZZX" +
+                "wlcDHSprf8yW0L0KA5jIwq7qBeu/H/H5vm6yVD5zvUIsD7htX0tIcXeMVAmMXFLX" +
+                "35duvYDpTYgO+DsMgk2Q666j6OcEDVWNBDqGHc+uPvYzVF6wb3w3qbsqTnD0qb/p" +
+                "WxpEdgK2BMVz+IPwdP6hDsDRc67LVftYqHJLKAfQt5T6uRImDizGzhhfIfJwGQxI" +
+                "7TeJq0xWIwB+KDUbFPfTcq0RkaJ2C5cKIx08c7lYhrsPXbW+J/W4M5ZErbwcdj12" +
+                "hrfV8TPx/RgpJcq82otrNthI3f4QdG4POUhdgSx4TvoGMTk6CnrJwALqkGl8OTfP" +
+                "KojOucENSxcA4ERtBw4It8/X39Mk0aqa8/YBDSDDjb+gCu/Em4yYvrattNebBC1z" +
+                "ulK9uJIXxVPi5tNd7KlwLRMCAwEAAQ==\n" +
+                "-----END PUBLIC KEY-----";
         //全局信息初始化
         GoagalInfo.get().init(this);
-
 
         //设置http默认参数
         String agent_id = "1";

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.blankj.utilcode.util.SizeUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -22,6 +21,7 @@ import com.kk.securityhttp.net.contains.HttpConfig;
 import java.util.List;
 
 import butterknife.BindView;
+import yc.com.blankj.utilcode.util.SizeUtils;
 import yc.com.calendar.R;
 import yc.com.calendar.activity.CaipiaoListActivity;
 import yc.com.calendar.adapter.ShenmaAdapter;
@@ -33,10 +33,10 @@ import yc.com.calendar.constants.SpConstant;
 import yc.com.calendar.engine.CaipiaoEngine;
 import yc.com.calendar.engine.VipInfoEngine;
 import yc.com.calendar.util.SimpleCacheUtils;
+import yc.com.calendar.util.UIUitls;
 import yc.com.calendar.util.VipInfoHelper;
 import yc.com.calendar.widget.PayDialog;
 import rx.functions.Action1;
-import com.kk.utils.UIUitls;
 
 /**
  * Created by wanglin  on 2018/1/11 15:41.

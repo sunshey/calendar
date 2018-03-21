@@ -19,7 +19,7 @@ import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 import com.jakewharton.rxbinding.view.RxView;
-import com.vondear.rxtools.RxSPUtils;
+import com.vondear.rxtools.RxSPTool;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -166,7 +166,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         if (position == 0) {
             llDate.setVisibility(View.VISIBLE);
             tvMainTitle.setVisibility(View.GONE);
-            String str = RxSPUtils.getString(this, SpConstant.CURRENT_DATE);
+            String str = RxSPTool.getString(this, SpConstant.CURRENT_DATE);
             if (!TextUtils.isEmpty(str)) {
                 tvMainDate.setText(str);
             }
@@ -208,7 +208,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     private void setCurrentDate(String year, String month) {
         String currentDate = String.format(getString(R.string.current_date), year, month);
         tvMainDate.setText(currentDate);
-        RxSPUtils.putString(this, SpConstant.CURRENT_DATE, currentDate);
+        RxSPTool.putString(this, SpConstant.CURRENT_DATE, currentDate);
     }
 
     @Subscribe(

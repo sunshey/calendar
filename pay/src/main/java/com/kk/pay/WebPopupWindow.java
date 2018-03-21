@@ -88,7 +88,7 @@ public class WebPopupWindow extends PopupWindow {
         setWindowAlpha(0.5f);
         loadingDialog.show("正在连接支付通道...");
 
-        if(isOverloadUrl) {
+        if (isOverloadUrl) {
             webView.setWebViewClient(new WebViewClient() {
 
                 @Override
@@ -196,18 +196,17 @@ public class WebPopupWindow extends PopupWindow {
                 .contentColor(Color.GRAY)
                 .titleColor(Color.BLACK)
                 .canceledOnTouchOutside(false)
-                .onAny(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        if (DialogAction.POSITIVE == which) {
-                            if (IPayImpl.uiPayCallback != null && IPayImpl.uOrderInfo != null && IPayImpl.isGen()) {
-                                IPayImpl.checkOrder(IPayImpl.uOrderInfo, IPayImpl.uiPayCallback);
-                            }
-                            dialog.dismiss();
-                        }
-
-                    }
-                })
+//                .onAny(new MaterialDialog.SingleButtonCallback() {
+//                    @Override
+//                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                        if (DialogAction.POSITIVE == which) {
+//                            if (IPayImpl.uiPayCallback != null && IPayImpl.uOrderInfo != null && IPayImpl.isGen()) {
+//                                IPayImpl.checkOrder(IPayImpl.uOrderInfo, IPayImpl.uiPayCallback);
+//                            }
+//                            dialog.dismiss();
+//                        }
+//                    }
+//                })
                 .keyListener(new DialogInterface.OnKeyListener() {
                     @Override
                     public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {

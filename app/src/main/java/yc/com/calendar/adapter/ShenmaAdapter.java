@@ -4,15 +4,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.TimeUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.kk.pay.other.LogUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import yc.com.blankj.utilcode.util.TimeUtils;
 import yc.com.calendar.R;
 import yc.com.calendar.bean.CaipiaoInfo;
 import yc.com.calendar.util.WeekUtil;

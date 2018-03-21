@@ -2,7 +2,6 @@ package com.kk.pay.other;
 
 import android.util.Log;
 
-import com.blankj.utilcode.util.LogUtils;
 
 /**
  * 日志输出类
