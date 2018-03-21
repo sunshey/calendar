@@ -17,7 +17,7 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.kk.pay.OrderInfo;
 import com.kk.securityhttp.domain.ResultInfo;
 import com.kk.securityhttp.net.contains.HttpConfig;
-import com.kk.utils.UIUitls;
+
 
 import java.util.List;
 
@@ -36,6 +36,7 @@ import yc.com.calendar.util.SimpleCacheUtils;
 import yc.com.calendar.util.VipInfoHelper;
 import yc.com.calendar.widget.PayDialog;
 import rx.functions.Action1;
+import com.kk.utils.UIUitls;
 
 /**
  * Created by wanglin  on 2018/1/11 15:41.

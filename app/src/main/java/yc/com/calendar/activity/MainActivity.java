@@ -274,7 +274,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() - time > 2000) {
-            Toast.makeText(this, "再按一次退出万年历运势", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再按一次退出" + getString(R.string.app_name), Toast.LENGTH_SHORT).show();
             time = System.currentTimeMillis();
         } else {
             super.onBackPressed();

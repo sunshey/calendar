@@ -1,6 +1,7 @@
 package yc.com.calendar.fragment;
 
 import android.graphics.Rect;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,7 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.blankj.utilcode.util.SizeUtils;
 import com.kk.securityhttp.domain.ResultInfo;
 import com.kk.securityhttp.net.contains.HttpConfig;
-import com.kk.utils.UIUitls;
+
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ import yc.com.calendar.constants.SpConstant;
 import yc.com.calendar.engine.NewsGroupEngine;
 import yc.com.calendar.util.SimpleCacheUtils;
 import rx.functions.Action1;
+import com.kk.utils.UIUitls;
 
 /**
  * Created by wanglin  on 2018/1/12 19:41.

@@ -14,6 +14,7 @@ import com.umeng.commonsdk.UMConfigure;
 import java.util.HashMap;
 import java.util.Map;
 
+import rx.android.schedulers.AndroidSchedulers;
 import yc.com.calendar.callback.EmptyCallback;
 import yc.com.calendar.callback.ErrorCallback;
 import yc.com.calendar.callback.LoadingCallback;
@@ -32,13 +33,13 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 //        RxUtils.init(this);
-        Observable.just("").subscribeOn(Schedulers.io()).subscribe(new Action1<String>() {
-            @Override
-            public void call(String s) {
-                init();
-            }
-        });
-
+//        Observable.just("").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<String>() {
+//            @Override
+//            public void call(String s) {
+//                init();
+//            }
+//        });
+        init();
 
     }
 
@@ -53,6 +54,7 @@ public class MyApp extends Application {
         //全局信息初始化
         GoagalInfo.get().init(this);
 
+
         //设置http默认参数
         String agent_id = "1";
         Map<String, String> params = new HashMap<>();
@@ -66,8 +68,8 @@ public class MyApp extends Application {
         String sv = getSV();
         params.put("sv", sv);
         params.put("device_type", "2");
-        if (GoagalInfo.get().appInfo != null) {
-            params.put("app_version", GoagalInfo.get().appInfo.getVersionCode() + "");
+        if (GoagalInfo.get().packageInfo != null) {
+            params.put("app_version", GoagalInfo.get().packageInfo.versionCode + "");
         }
         HttpConfig.setDefaultParams(params);
 

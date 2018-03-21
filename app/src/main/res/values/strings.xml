@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">彩票运势</string>
+    <string name="app_name">彩票开奖宝</string>
     <string name="main_index">万年历</string>
-    <string name="main_huangli">黄历</string>
+    <string name="main_huangli">运势</string>
     <string name="main_caipiao">彩票</string>
     <string name="main_qifu">祈福点香</string>
-    <string name="main_shenma">神马预测</string>
+    <string name="main_shenma">预测</string>
     <string name="every_day_text">每日一言</string>
     <string name="huangli_infomation">黄历资讯</string>
     <string name="change_change">换一批</string>
